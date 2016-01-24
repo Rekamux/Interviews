@@ -1,11 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct Chain_
+struct Chain
 {
     int data;
-    struct Chain_ *n;
-} Chain;
+    struct Chain *n;
+};
 
 void deallocate( Chain *chain )
 {
@@ -26,7 +26,7 @@ Chain *allocate( int *data, int count )
         chain = (Chain *)malloc( sizeof( Chain ) );
         if( !chain )
         {
-            deallocate( prev );
+            deallocate( first );
             return NULL;
         }
         if( i == 0 ) first = chain;
@@ -34,7 +34,7 @@ Chain *allocate( int *data, int count )
         if( prev ) prev->n = chain;
         prev = chain;
     }
-    
+
     chain->n = NULL;
 
     return first;
@@ -93,7 +93,7 @@ int main( int argc, char *argv[] )
         if( iter->data != size - 1 - i )
         {
             fprintf( stderr, "Got %d, expected %d\n", iter->data, size - 1 - i );
-            return -1; 
+            return -1;
         }
 
         iter = iter->n;
