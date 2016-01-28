@@ -28,7 +28,7 @@ int partition( int *list, int first, int last )
 {
     int pivot = list[last];
     int i = first;
-    
+
     for( int j = first; j < last; j++ )
     {
         if( list[j] < pivot )
